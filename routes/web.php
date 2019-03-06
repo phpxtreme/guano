@@ -11,4 +11,16 @@
 |
 */
 
-Route::view('/', 'wrapper');
+use Illuminate\Support\Facades\Auth;
+
+Route::get('/', function () {
+    return !Auth::check() ? view('page.auth') : view('page.home');
+})->name('wrapper');
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::post('login', 'AuthController@login');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::post('logout', 'AuthController@logout');
+});
