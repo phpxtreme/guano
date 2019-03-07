@@ -23,14 +23,24 @@ class CreateUsersTable extends Migration
         Schema::create($this->table, function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('first_name', 25);
-            $table->string('last_name', 25);
-            $table->string('email', 60);
-            $table->text('password');
-            $table->boolean('active')->default(true);
+            $table->string('first_name', 25)
+                ->nullable(false);
+
+            $table->string('last_name', 25)
+                ->nullable(false);
+
+            $table->string('email', 60)
+                ->nullable(false);
+
+            $table->text('password')
+                ->nullable(false);
+
+            $table->boolean('active')
+                ->default(true);
 
             $table->timestamps();
 
+            $table->index(['email']);
             $table->unique(['email']);
         });
     }

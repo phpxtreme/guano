@@ -23,12 +23,18 @@ class CreateRolesTable extends Migration
         Schema::create($this->table, function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('name', 100);
-            $table->text('description');
-            $table->boolean('active')->default(true);
+            $table->string('name', 100)
+                ->nullable(false);
+
+            $table->text('description')
+                ->nullable(false);
+
+            $table->boolean('active')
+                ->default(true);
 
             $table->timestamps();
 
+            $table->index(['name']);
             $table->unique(['name']);
         });
     }

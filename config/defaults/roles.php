@@ -3,12 +3,12 @@
 return [
     [
         'name'        => 'Administrator',
-        'description' => 'Guano Administrator',
+        'description' => 'Default Guano Administrator',
         'active'      => true
     ],
     [
         'name'        => 'User',
-        'description' => 'Guano User',
+        'description' => 'Default Guano User',
         'active'      => true
     ]
 ];

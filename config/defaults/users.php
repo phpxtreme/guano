@@ -2,7 +2,7 @@
 
 return [
     [
-        'first_name' => 'Guano',
+        'first_name' => 'Administrator',
         'last_name'  => 'Administrator',
         'email'      => 'admin@example.com',
         'password'   => 'ascent',
@@ -10,7 +10,7 @@ return [
         'active'     => true
     ],
     [
-        'first_name' => 'Guano',
+        'first_name' => 'User',
         'last_name'  => 'User',
         'email'      => 'user@example.com',
         'password'   => 'ascent',
