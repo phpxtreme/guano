@@ -24,11 +24,12 @@ class CreateRolesTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('name', 100);
-
-            $table->boolean('active')
-                ->default(true);
+            $table->text('description');
+            $table->boolean('active')->default(true);
 
             $table->timestamps();
+
+            $table->unique(['name']);
         });
     }
 

@@ -4,14 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateRoleUserTable extends Migration
 {
     /**
-     * Users Table
+     * Role User Pivot Table
      *
      * @var string
      */
-    private $table = 'users';
+    private $table = 'role_user';
 
     /**
      * Run the migrations.
@@ -23,15 +23,21 @@ class CreateUsersTable extends Migration
         Schema::create($this->table, function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('first_name', 25);
-            $table->string('last_name', 25);
-            $table->string('email', 60);
-            $table->text('password');
-            $table->boolean('active')->default(true);
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('role_id');
 
             $table->timestamps();
 
-            $table->unique(['email']);
+            $table->index(['user_id', 'role_id']);
+            $table->unique(['user_id', 'role_id']);
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('role_id')
+                ->references('id')->on('roles')
+                ->onDelete('cascade');
         });
     }
 
