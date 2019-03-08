@@ -11,6 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
+mix.sass('resources/sass/auth/auth.scss', 'public/css')
+
 mix.combine([
     'node_modules/jquery/dist/jquery.js',
     'node_modules/bootstrap/dist/js/bootstrap.js',

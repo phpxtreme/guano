@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\RoleUser;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -18,6 +17,9 @@ class UsersTableSeeder extends Seeder
 
         array_map(function ($user) {
 
+            /** @var User $model */
+            $model = new User();
+
             /** @var array $roles */
             $roles = $user['roles'];
 
@@ -25,11 +27,11 @@ class UsersTableSeeder extends Seeder
             unset($user['roles']);
 
             /** @var object $user */
-            $user = User::create($user);
+            $user = $model->create($user);
 
             // Associate Roles
             foreach ($roles as $role) {
-                RoleUser::create([
+                $model->roles()->attach($user, [
                     'role_id' => $role,
                     'user_id' => $user->id
                 ]);

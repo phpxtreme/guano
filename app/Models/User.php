@@ -104,8 +104,6 @@ class User extends Authenticatable
      */
     public function roles()
     {
-        return $this->belongsToMany(Role::class)
-            ->using(RoleUser::class)->as('role')
-            ->withPivot('role');
+        return $this->belongsToMany(Role::class);
     }
 }
